@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Form } from './GlobalStyles';
+import { Button, Form, Input } from './GlobalStyles';
 
 const RegistrationForm = ({ }) => {
   const onFormSubmit = () => {
@@ -9,12 +9,12 @@ const RegistrationForm = ({ }) => {
 
   return (
     <Form onSubmit={onFormSubmit}>
-      <input type="text"
+      <Input type="text"
         placeholder="Choose your username">
-      </input>
-      <input type="text"
+      </Input>
+      <Input type="text"
         placeholder="Choose your password">
-      </input>
+      </Input>
       <Button reg type="submit">Create account</Button>
     </Form >
   )

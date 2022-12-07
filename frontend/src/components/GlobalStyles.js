@@ -1,30 +1,34 @@
 import styled from 'styled-components/macro';
 
 export const Wrapper = styled.section`
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 5%;
+  height: 100vh;
+  width: 90vw;
+  background-color: #AA96DA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
 `
 
 export const Button = styled.button`
-  color: #FCF6F5FF;
+  color: black;
   ${props => {
     if (props.reg) {
       return `
-      background-color: ${`#990011FF`};
+      background-color: ${`#C5FAD5`};
       `
     } else if (props.signOut) {
       return `
-      background-color: ${`green`};
+      background-color: ${`#FFFFD2`};
       `
     } else {
       return `
-      background-color: ${`blue`};
+      background-color: ${`#FFFFD2`};
       `
     }
   }};
-  border: #990011FF;
+  border: none;
+  box-shadow: 5px 8px black;
   border-radius: 20px;
   padding: 15px;
   margin: 15px;
@@ -37,5 +41,13 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30%;
+  width: 50%;
+`
+export const Input = styled.input`
+  border-radius: 10px;
+  padding: 8px;
+  margin: 5px;
+  width: 190px;
+  border-color: black;
+  font-family: 'Montserrat', sans - serif;
 `
