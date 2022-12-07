@@ -1,9 +1,15 @@
 import React from 'react';
+import SignInForm from 'components/SignInForm';
+import SignOutButton from 'components/SignOutButton';
+import RegistrationForm from 'components/RegistrationForm';
+import { Wrapper } from 'components/GlobalStyles';
 
 export const App = () => {
   return (
-    <div>
-      Find me in src/app.js!
-    </div>
+    <Wrapper>
+      <RegistrationForm />
+      <SignInForm />
+      <SignOutButton />
+    </Wrapper>
   );
 }
