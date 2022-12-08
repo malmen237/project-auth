@@ -29,10 +29,3 @@ export const App = () => {
   );
 }
 
-{/* 
-  <Wrapper>
-    <RegistrationForm />
-    <SignInForm />
-    <SignOutButton />
-  </Wrapper> 
-*/}

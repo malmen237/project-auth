@@ -58,7 +58,7 @@ app.post("/register", async (req, res) => {
         response: {
           username: newUser.username,
           accessToken: newUser.accessToken,
-          id: newUser._id
+          id: newUser.id
         }
       });
     }
@@ -80,7 +80,7 @@ app.post("/login", async (req, res) => {
         success: true,
         response: {
           username: user.username,
-          id: user._id,
+          id: user.id,
           accessToken: user.accessToken
         }
       });

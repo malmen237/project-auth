@@ -18,7 +18,7 @@ const Login = () => {
     if (accessToken) {
       navigate("/");
     }
-  }, [])
+  }, [accessToken])
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +35,7 @@ const Login = () => {
         if (data.success) {
           batch(() => {
             dispatch(user.actions.setUsername(data.response.username));
-            dispatch(user.actions.setUserId(data.response.id))
+            dispatch(user.actions.setId(data.response.id))
             dispatch(user.actions.setAccessToken(data.response.accessToken));
             dispatch(user.actions.setError(null));
           });
@@ -78,7 +78,7 @@ const Login = () => {
           placeholder={mode === "login" ? "Enter your password" : "Choose your password"}
           value={password}
           onChange={e => setPassword(e.target.value)} />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{mode === "login" ? "Log In" : "Submit"}</Button>
       </Form>
     </Wrapper>
   )

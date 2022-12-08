@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import games from 'reducers/games';
-// import user from 'reducers/user';
 import { API_URL } from "utils/utils";
 import { useNavigate, Link } from "react-router-dom";
+import { Wrapper } from './GlobalStyles';
 
 const Main = () => {
   const gamesItems = useSelector((store) => store.games.items);
@@ -12,7 +12,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (accessToken) {
+    if (!accessToken) {
       navigate("/login");
     }
   }, [])
@@ -39,13 +39,13 @@ const Main = () => {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <Link to="/login">GO TO LOGIN</Link>
       <h1>This is the main component</h1>
       {gamesItems.map((item) => {
         return <p key={item.id}>{item.title}</p>
       })}
-    </>
+    </Wrapper>
   )
 }
 
