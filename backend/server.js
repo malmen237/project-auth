@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import nesGamesData from "./data/NES-games.json";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 
@@ -8,14 +9,22 @@ const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-auth";
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = Promise;
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8090;
 const app = express();
 
 // Add middlewares to enable cors and json body parsing
 app.use(cors());
 app.use(express.json());
 
-//
+// Removes the _id and __v tags from mongoDB and adds a id-tag without underscore.
+mongoose.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform: (doc, converted) => {
+    delete converted._id;
+  }
+});
+
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -109,30 +118,45 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
-const ThoughtSchema = new mongoose.Schema({
-  message: {
-    type: String,
+const GameSchema = new mongoose.Schema({
+  title: {
+    type: String
   },
-  createdAt: {
-    type: Date,
-    default: () => new Date()
+  developer: {
+    type: String
   },
-  hearts: {
-    type: Number,
-    default: 0
+  publisher: {
+    type: String
+  },
+  release_date: {
+    type: String
   }
 });
 
-const Thought = mongoose.model("Thought", ThoughtSchema);
-app.get("/thoughts", authenticateUser);
-app.get("/thoughts", (req, res) => {
-  res.status(200).json({ success: true, response: "all the thoughts" })
+const Game = mongoose.model("Game", GameSchema);
+
+if (true) {
+  const resetDatabase = async () => {
+    await Game.deleteMany();
+    nesGamesData.forEach(singleGame => {
+      const newGame = new Game(singleGame);
+      newGame.save();
+    })
+  }
+  resetDatabase();
+}
+
+app.get("/", (req, res) => {
+  res.send([
+    { "API": "NES-games library at /games" },
+    { "path": "/games", "url": 'https://project-auth-rrvntf6zcq-lz.a.run.app/games', "methods": ["GET"] }
+  ]);
 });
 
-
-// Start defining your routes here
-app.get("/", (req, res) => {
-  res.send("Hello Technigo!");
+app.get("/games", authenticateUser);
+app.get("/games", async (req, res) => {
+  const games = await Game.find({})
+  res.status(200).json({ success: true, response: games })
 });
 
 // Start the server
