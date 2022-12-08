@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "utils/utils";
-import { Wrapper, Button, Form, Input } from './GlobalStyles';
+import { Wrapper, Button, Form, FormInput, RadioButtons, SingleRadioButton } from './GlobalStyles';
 import user from "reducers/user";
 
 const Login = () => {
@@ -51,28 +51,34 @@ const Login = () => {
   }
   return (
     <Wrapper>
-      <label htmlFor="register">Register</label>
-      <input
-        type="radio"
-        id="register"
-        checked={mode === "register"}
-        onChange={() => setMode("register")} />
-      <label htmlFor="login">Login</label>
-      <input
-        type="radio"
-        id="login"
-        checked={mode === "login"}
-        onChange={() => setMode("login")} />
+      <RadioButtons>
+        <SingleRadioButton>
+          <label htmlFor="register">Register</label>
+          <input
+            type="radio"
+            id="register"
+            checked={mode === "register"}
+            onChange={() => setMode("register")} />
+        </SingleRadioButton>
+        <SingleRadioButton>
+          <label htmlFor="login">Login</label>
+          <input
+            type="radio"
+            id="login"
+            checked={mode === "login"}
+            onChange={() => setMode("login")} />
+        </SingleRadioButton>
+      </RadioButtons>
       <Form onSubmit={onFormSubmit}>
         <label htmlFor="username">Username</label>
-        <Input
+        <FormInput
           type="text"
           id="username"
           placeholder={mode === "login" ? "Enter your username" : "Choose your username"}
           value={username}
           onChange={e => setUsername(e.target.value)} />
         <label htmlFor="password">Password</label>
-        <Input
+        <FormInput
           type="password"
           id="password"
           placeholder={mode === "login" ? "Enter your password" : "Choose your password"}

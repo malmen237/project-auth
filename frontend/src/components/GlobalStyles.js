@@ -43,11 +43,20 @@ export const Form = styled.form`
   align-items: center;
   width: 50%;
 `
-export const Input = styled.input`
+export const FormInput = styled.input`
   border-radius: 10px;
   padding: 8px;
   margin: 5px;
   width: 190px;
   border-color: black;
   font-family: 'Montserrat', sans - serif;
+`
+export const RadioButtons = styled.div`
+display: flex;
+flex-direction: row;
+`
+export const SingleRadioButton = styled.div`
+display: flex;
+flex-direction: column;
+padding: 20px;
 `

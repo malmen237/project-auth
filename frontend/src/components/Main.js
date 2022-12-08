@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import games from 'reducers/games';
+import user from 'reducers/user';
 import { API_URL } from "utils/utils";
-import { useNavigate, Link } from "react-router-dom";
-import { Wrapper } from './GlobalStyles';
+import { useNavigate } from "react-router-dom";
+import { Wrapper, Button } from './GlobalStyles';
 
 const Main = () => {
   const gamesItems = useSelector((store) => store.games.items);
@@ -40,8 +41,11 @@ const Main = () => {
 
   return (
     <Wrapper>
-      <Link to="/login">GO TO LOGIN</Link>
-      <h1>This is the main component</h1>
+      <Button signOut type="button" onClick={() => {
+        dispatch(user.actions.logOut());
+        navigate("/login");
+      }}>SIGN OUT</Button>
+      <h1>All the NES games</h1>
       {gamesItems.map((item) => {
         return <p key={item.id}>{item.title}</p>
       })}
