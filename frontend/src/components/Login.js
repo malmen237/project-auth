@@ -2,23 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "utils/utils";
-import { Wrapper, Button, Form, FormInput, RadioButtons, SingleRadioButton } from './GlobalStyles';
+import { Wrapper, Button, Form, FormInput, RadioButtons, SingleRadioButton, ErrorMessage } from './GlobalStyles';
 import user from "reducers/user";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState("login");
+  // const [loginError, setLoginError] = useState(null)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
+  const error = useSelector((store) => store.user.error);
 
   useEffect(() => {
     if (accessToken) {
       navigate("/");
     }
   }, [accessToken])
+
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -38,6 +41,7 @@ const Login = () => {
             dispatch(user.actions.setId(data.response.id))
             dispatch(user.actions.setAccessToken(data.response.accessToken));
             dispatch(user.actions.setError(null));
+            // setLoginError(null)
           });
         } else {
           batch(() => {
@@ -45,6 +49,7 @@ const Login = () => {
             dispatch(user.actions.setId(null))
             dispatch(user.actions.setAccessToken(null));
             dispatch(user.actions.setError(data.response));
+            // setLoginError(data.response)
           });
         }
       })
@@ -86,6 +91,10 @@ const Login = () => {
           onChange={e => setPassword(e.target.value)} />
         <Button type="submit">{mode === "login" ? "Log In" : "Submit"}</Button>
       </Form>
+      {/* {loginError !== null && (
+        <ErrorMessage>{loginError}</ErrorMessage>
+      )} */}
+      <ErrorMessage>{error}</ErrorMessage>
     </Wrapper>
   )
 }

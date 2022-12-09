@@ -32,7 +32,6 @@ export const Button = styled.button`
   border-radius: 20px;
   padding: 15px;
   margin: 15px;
-  font-family: 'Montserrat', sans - serif;
   font-weight: bold;
   width: 200px;
 `
@@ -49,14 +48,18 @@ export const FormInput = styled.input`
   margin: 5px;
   width: 190px;
   border-color: black;
-  font-family: 'Montserrat', sans - serif;
 `
 export const RadioButtons = styled.div`
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 `
 export const SingleRadioButton = styled.div`
-display: flex;
-flex-direction: column;
-padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+`
+
+export const ErrorMessage = styled.p`
+  font-size: 1.2em;
+  color: #ba1a1a;
 `
