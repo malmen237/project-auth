@@ -76,7 +76,7 @@ app.post("/register", async (req, res) => {
   catch (error) {
     res.status(400).json({
       success: false,
-      response: error
+      response: "Username is already registered"
     });
   }
 });
@@ -165,7 +165,7 @@ app.get("/", (req, res) => {
 
 app.get("/games", authenticateUser);
 app.get("/games", async (req, res) => {
-  const games = await Game.find({})
+  const games = await Game.find({}).limit(10)
   res.status(200).json({ success: true, response: games })
 });
 
