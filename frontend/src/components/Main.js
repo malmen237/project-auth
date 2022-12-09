@@ -45,7 +45,7 @@ const Main = () => {
         dispatch(user.actions.logOut());
         navigate("/login");
       }}>SIGN OUT</Button>
-      <h1>All the NES games</h1>
+      <h1>10 fun NES games!</h1>
       {gamesItems.map((item) => {
         return <p key={item.id}>{item.title}</p>
       })}
