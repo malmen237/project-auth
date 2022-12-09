@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "utils/utils";
-import { Wrapper, Button, Form, FormInput, RadioButtons, SingleRadioButton } from './GlobalStyles';
+import { Wrapper, Button, Form, FormInput, RadioButtons, SingleRadioButton, ErrorMessage } from './GlobalStyles';
 import user from "reducers/user";
 
 const Login = () => {
@@ -13,6 +13,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
+  const error = useSelector((store) => store.user.error);
 
   useEffect(() => {
     if (accessToken) {
@@ -86,6 +87,7 @@ const Login = () => {
           onChange={e => setPassword(e.target.value)} />
         <Button type="submit">{mode === "login" ? "Log In" : "Submit"}</Button>
       </Form>
+      <ErrorMessage>{error}</ErrorMessage>
     </Wrapper>
   )
 }
