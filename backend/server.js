@@ -28,12 +28,22 @@ mongoose.set('toJSON', {
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
-    unique: true,
-    required: true
+    unique: {
+      validator: function(v) {
+        return /\d{3}-\d{3}-\d{4}/.test(v);
+      },
+      message: props => `${props.value} is not unique!`
+    },
+    required: {
+      validator: function(v) {
+        return /\d{3}-\d{3}-\d{4}/.test(v);
+      },
+      message: 'Please enter usernamne'
+    },
   },
   password: {
     type: String,
-    required: true
+    required: [true, 'Please enter password']
   },
   accessToken: {
     type: String,
