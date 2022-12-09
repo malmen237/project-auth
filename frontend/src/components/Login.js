@@ -2,8 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, batch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "utils/utils";
-import { Wrapper, Button, Form, FormInput, RadioButtons, SingleRadioButton, ErrorMessage } from './GlobalStyles';
 import user from "reducers/user";
+import {
+  Wrapper,
+  Button,
+  Form,
+  FormInput,
+  RadioButtons,
+  SingleRadioButton,
+  ErrorMessage,
+  HeaderOne,
+  HeaderTwo,
+  HeaderThree,
+  HeaderWrapper
+} from './GlobalStyles';
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -48,7 +61,7 @@ const Login = () => {
             dispatch(user.actions.setUsername(null));
             dispatch(user.actions.setId(null))
             dispatch(user.actions.setAccessToken(null));
-            dispatch(user.actions.setError(data.response));
+            dispatch(user.actions.setError(data.response.error));
             // setLoginError(data.response)
           });
         }
@@ -56,6 +69,11 @@ const Login = () => {
   }
   return (
     <Wrapper>
+      <HeaderWrapper>
+        <HeaderOne>Welcome!</HeaderOne>
+        <HeaderTwo> Please register or sign in </HeaderTwo>
+        <HeaderThree>(it is NES-essary) </HeaderThree>
+      </HeaderWrapper>
       <RadioButtons>
         <SingleRadioButton>
           <label htmlFor="register">Register</label>
@@ -95,6 +113,7 @@ const Login = () => {
         <ErrorMessage>{loginError}</ErrorMessage>
       )} */}
       <ErrorMessage>{error}</ErrorMessage>
+
     </Wrapper>
   )
 }

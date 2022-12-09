@@ -10,6 +10,27 @@ export const Wrapper = styled.section`
   padding: 5%;
 `
 
+export const HeaderOne = styled.h1`
+margin: 0;
+padding: 5px;
+`
+export const HeaderTwo = styled.h2`
+margin: 0;
+padding: 5px;
+`
+export const HeaderThree = styled.h3`
+margin: 0;
+padding: 5px;
+`
+export const HeaderWrapper = styled.div`
+background-color: #C5FAD5;
+border-radius: 10px;
+padding: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+`
+
 export const Button = styled.button`
   color: black;
   ${props => {
