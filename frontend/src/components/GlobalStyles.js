@@ -11,43 +11,29 @@ export const Wrapper = styled.section`
 `
 
 export const HeaderOne = styled.h1`
-margin: 0;
-padding: 5px;
+  margin: 0;
+  padding: 5px;
 `
 export const HeaderTwo = styled.h2`
-margin: 0;
-padding: 5px;
+  margin: 0;
+  padding: 5px;
 `
 export const HeaderThree = styled.h3`
-margin: 0;
-padding: 5px;
+  margin: 0;
+  padding: 5px;
 `
 export const HeaderWrapper = styled.div`
-background-color: #C5FAD5;
-border-radius: 10px;
-padding: 20px;
-display: flex;
-flex-direction: column;
-align-items: center;
+  background-color: #C5FAD5;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const Button = styled.button`
   color: black;
-  ${props => {
-    if (props.reg) {
-      return `
-      background-color: ${`#C5FAD5`};
-      `
-    } else if (props.signOut) {
-      return `
-      background-color: ${`#FFFFD2`};
-      `
-    } else {
-      return `
-      background-color: ${`#FFFFD2`};
-      `
-    }
-  }};
+  background-color: ${props => props.signOut ? "#FFFFD2" : "#FFFFD2"};
   border: none;
   box-shadow: 5px 8px black;
   border-radius: 20px;

@@ -22,11 +22,12 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState("login");
+  const [activeError, setActiveError] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const accessToken = useSelector((store) => store.user.accessToken);
-  // const error = useSelector((store) => store.user.error);
+  const error = useSelector((store) => store.user.error);
 
   useEffect(() => {
     if (accessToken) {
@@ -54,6 +55,7 @@ const Login = () => {
             dispatch(user.actions.setAccessToken(data.response.accessToken));
             dispatch(user.actions.setError(null));
           });
+          setActiveError(false);
         } else {
 
           batch(() => {
@@ -61,8 +63,8 @@ const Login = () => {
             dispatch(user.actions.setId(null))
             dispatch(user.actions.setAccessToken(null));
             dispatch(user.actions.setError(data.response));
-            alert(data.response)
           });
+          setActiveError(true);
         }
       })
   }
@@ -108,7 +110,7 @@ const Login = () => {
           onChange={e => setPassword(e.target.value)} />
         <Button type="submit">{mode === "login" ? "Log In" : "Submit"}</Button>
       </Form>
-      {/* <ErrorMessage>{error}</ErrorMessage> */}
+      <ErrorMessage>{activeError ? error : ''}</ErrorMessage>
 
     </Wrapper>
   )

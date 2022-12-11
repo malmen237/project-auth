@@ -55,6 +55,7 @@ app.post("/register", async (req, res) => {
     } else {
       const newUser = await new User({ username: username, password: bcrypt.hashSync(password, salt) }).save();
       res.status(201).json({
+        success: true,
         response: {
           username: newUser.username,
           accessToken: newUser.accessToken,

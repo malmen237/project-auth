@@ -16,7 +16,7 @@ const Main = () => {
     if (!accessToken) {
       navigate("/login");
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const options = {
