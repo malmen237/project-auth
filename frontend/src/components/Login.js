@@ -33,7 +33,7 @@ const Login = () => {
     if (accessToken) {
       navigate("/");
     }
-  }, [accessToken])
+  }, [accessToken]);
 
 
   const onFormSubmit = (event) => {
@@ -111,7 +111,6 @@ const Login = () => {
         <Button type="submit">{mode === "login" ? "Log In" : "Submit"}</Button>
       </Form>
       <ErrorMessage>{activeError ? error : ''}</ErrorMessage>
-
     </Wrapper>
   )
 }

@@ -14,14 +14,17 @@ export const HeaderOne = styled.h1`
   margin: 0;
   padding: 5px;
 `
+
 export const HeaderTwo = styled.h2`
   margin: 0;
   padding: 5px;
 `
+
 export const HeaderThree = styled.h3`
   margin: 0;
   padding: 5px;
 `
+
 export const HeaderWrapper = styled.div`
   background-color: #C5FAD5;
   border-radius: 10px;
@@ -49,6 +52,7 @@ export const Form = styled.form`
   align-items: center;
   width: 50%;
 `
+
 export const FormInput = styled.input`
   border-radius: 10px;
   padding: 8px;
@@ -56,10 +60,12 @@ export const FormInput = styled.input`
   width: 190px;
   border-color: black;
 `
+
 export const RadioButtons = styled.div`
   display: flex;
   flex-direction: row;
 `
+
 export const SingleRadioButton = styled.div`
   display: flex;
   flex-direction: column;

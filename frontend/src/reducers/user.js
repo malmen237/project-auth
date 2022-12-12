@@ -24,7 +24,7 @@ const user = createSlice({
       store.error = action.payload;
     },
     logOut: () => {
-      return initialState
+      return initialState;
     }
   }
 });
