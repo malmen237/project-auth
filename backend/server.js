@@ -46,8 +46,14 @@ const User = mongoose.model("User", UserSchema);
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
   try {
+    const user = await User.findOne({ username });
     const salt = bcrypt.genSaltSync();
-    if (password.length < 8) {
+    if (user) {
+      res.status(400).json({
+        success: false,
+        response: "Username is already registered"
+      });
+    } else if (password.length < 8) {
       res.status(400).json({
         success: false,
         response: "Password must be at least 8 characters long"
@@ -63,11 +69,10 @@ app.post("/register", async (req, res) => {
         }
       });
     }
-  }
-  catch (error) {
+  } catch (error) {
     res.status(400).json({
       success: false,
-      response: "Username is already registered"
+      response: error
     });
   }
 });

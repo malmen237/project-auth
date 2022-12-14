@@ -55,6 +55,7 @@ const Login = () => {
             dispatch(user.actions.setAccessToken(data.response.accessToken));
             dispatch(user.actions.setError(null));
           });
+          // localStorage.setItem("userLocalStorage", data.response.accessToken);
           setActiveError(false);
         } else {
 
@@ -68,6 +69,7 @@ const Login = () => {
         }
       })
   }
+  
   return (
     <Wrapper>
       <HeaderWrapper>
